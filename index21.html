@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Sorter</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        input, button {
+            padding: 20px 0;
+            margin: 10px 0;
+            width: 100%;
+            border: 2px solid #3305c9;
+            border-radius: 8px;
+            font-size: 20px;
+        }
+        button {
+            background-color: #3a0ed7;
+            color: #fff;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #333;
+            font-size: 30px;
+        }
+        #numberInput{
+            font-size: 20px;
+        }
+        h2{
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>String Sorter</h2>
+        <input type="text" id="numberInput" placeholder="Enter a text...">
+        <button onclick="sortString()">Sort</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function sortString() {
+            const input = document.getElementById('numberInput').value;
+            if (!input) {
+                document.getElementById('result').innerText = "Please enter a valid input.";
+                return;
+            }
+            const sortedString = input.split('').sort().join('');
+            document.getElementById('result').innerText = `Sorted String: ${sortedString}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date and Time Display</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: #8acbed;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        #date, #time {
+            font-size: 24px;
+            margin-top: 10px;
+            color: #333;
+        }
+        .label {
+            font-weight: bold;
+            margin-right: 5px;
+            font-size: 2px;
+        }
+        h2 {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Current Date and Time</h2>
+        <div><span class="label">Date:</span><span id="date"></span></div>
+        <div><span class="label">Time:</span><span id="time"></span></div>
+    </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            document.getElementById('date').innerText = now.toDateString();
+            document.getElementById('time').innerText = now.toString();
+        }
+        
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+    </script>
+</body>
+</html>

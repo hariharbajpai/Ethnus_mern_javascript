@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            size: 20px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+        input.error-border, textarea.error-border {
+            border-color: red;
+            
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: large;
+            margin-left: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="myForm" onsubmit="return validateForm()">
+            <label>Name: <input type="text" id="name"></label>
+            <span class="error" id="nameError"></span><br>
+
+            <label>Email: <input type="text" id="email"></label>
+            <span class="error" id="emailError"></span><br>
+
+            <label>Website: <input type="text" id="website"></label>
+            <span class="error" id="websiteError"></span><br>
+
+            <label>Message: <textarea id="message"></textarea></label>
+            <span class="error" id="messageError"></span><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+            
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const website = document.getElementById('website');
+            const message = document.getElementById('message');
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const websiteError = document.getElementById('websiteError');
+            const messageError = document.getElementById('messageError');
+
+            [name, email, website, message].forEach(field => field.classList.remove('error-border'));
+            [nameError, emailError, websiteError, messageError].forEach(error => error.innerText = '');
+
+            if (!name.value.trim()) {
+                nameError.innerText = 'This field is required';
+                name.classList.add('error-border');
+                isValid = false;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value.trim()) {
+                emailError.innerText = 'A valid email address is required';
+                email.classList.add('error-border');
+                isValid = false;
+            } else if (!emailPattern.test(email.value.trim())) {
+                emailError.innerText = 'Invalid email format';
+                email.classList.add('error-border');
+                isValid = false;
+            }
+
+            const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
+            if (!website.value.trim()) {
+                websiteError.innerText = 'A valid URL is required';
+                website.classList.add('error-border');
+                isValid = false;
+            } else if (!urlPattern.test(website.value.trim())) {
+                websiteError.innerText = 'Invalid URL format';
+                website.classList.add('error-border');
+                isValid = false;
+            }
+
+            if (!message.value.trim()) {
+                messageError.innerText = 'This field is required';
+                message.classList.add('error-border');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>

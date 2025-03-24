@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #fdf5e6, #ffb6c1);
+        }
+        h1 {
+            color: blue;
+            text-align: center;
+        }
+        form {
+            width: 50%;
+            margin: auto;
+            border: 1px solid black;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+        }
+        .gender-options {
+            display: flex;
+            flex-direction: column;
+        }
+        .gender-options input {
+            width: auto;
+            margin-right: 5px;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+            display: none;
+        }
+        .submit-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .check {
+            display: flex;
+            gap: 10px;
+        }
+        .declare-container {
+            display: flex;
+            align-items: center;
+        }
+        .declare-container input {
+            width: auto;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Registration form</h1>
+
+    <form id="registrationForm">
+        <table>
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" name="first_name"><span class="error"> POOR</span></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="last_name"><span class="error"> POOR</span></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email"><span class="error"> POOR</span></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password"><span class="error"> POOR</span></td>
+            </tr>
+            <tr>
+                <td>Re-enter Password</td>
+                <td><input type="password" name="repassword"><span class="error"> POOR OR MISMATCH</span></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td class="gender-options">
+                    <div><input type="radio" name="gender" value="Male"> Male</div>
+                    <hr>
+                    <div><input type="radio" name="gender" value="Female"> Female</div>
+                </td>
+            </tr>
+            <tr>
+                <td>Age:</td>
+                <td><input type="number" name="age"><span class="error"> POOR</span></td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td><input type="text" name="phone"><span class="error"> POOR</span></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea name="address" rows="4"></textarea><span class="error"> POOR</span></td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td><input type="text" name="state"><span class="error"> POOR</span></td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td>
+                    <select name="country">
+                        <option>Choose your country</option>
+                        <option>India</option>
+                        <option>USA</option>
+                        <option>New Zealand</option>
+                        <option>Australia</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Languages known</td>
+                <td class="check">
+                    <input type="checkbox" name="language" value="English"> English
+                    <input type="checkbox" name="language" value="Kannada"> Kannada
+                    <input type="checkbox" name="language" value="Hindi"> Hindi
+                    <input type="checkbox" name="language" value="Telugu"> Telugu
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="declare-container">
+                    <input type="checkbox" name="declaration" required> 
+                    <span>Hereby I declare all the given details are true</span>
+                </td>
+            </tr>
+        </table>
+
+        <div class="submit-container">
+            Log in to <a href="https://learn.codemithra.com/login/index.php">Ethnus</a> website
+        </div>
+    </form>
+    <div class="submit-container">
+        <button type="button" onclick="validateForm()">Register</button>
+    </div>
+
+    <script>
+        function validateForm() {
+            const form = document.getElementById("registrationForm");
+            const inputs = form.querySelectorAll("input, textarea, select");
+            const errors = form.querySelectorAll(".error");
+
+            errors.forEach(error => error.style.display = "none");
+
+            inputs.forEach(input => {
+                const error = input.parentElement.querySelector(".error");
+                if (input.name === "password" || input.name === "repassword") {
+                    const password = form.querySelector("input[name='password']").value;
+                    const repassword = form.querySelector("input[name='repassword']").value;
+                    if (!password || !repassword || password !== repassword) {
+                        error.style.display = "inline";
+                    }
+                } else if (input.name === "phone" && input.value.length !== 10) {
+                    error.style.display = "inline";
+                } else if (!input.value.trim()) {
+                    error.style.display = "inline";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
