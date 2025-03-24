@@ -9,18 +9,29 @@
             text-align: center;
             padding: 50px;
             background-color: antiquewhite;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         h1 {
             font-size: 3rem;
             font-weight: bold;
             margin-bottom: 20px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         .user-info {
             margin-bottom: 30px;
             padding: 20px;
             background-color: #ffffff;
             border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        .user-info:hover {
+            transform: translateY(-5px) rotateX(5deg);
         }
         .user-info p {
             margin: 10px 0;
@@ -31,22 +42,78 @@
             margin-top: 30px;
             font-size: 2rem;
             color: #75e6e6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
-        .task-list {
-            list-style: none;
-            padding: 0;
+        .task-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        .task-list li {
-            margin: 15px 0;
+        .task-card {
+            width: 250px;
+            height: 150px;
+            background: linear-gradient(135deg, #ffffff, #f5f5f5);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            position: relative;
+            cursor: pointer;
+            perspective: 1000px;
+            border: 1px solid rgba(255,255,255,0.3);
         }
-        .task-list a {
+        .task-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #f5f5f5, #ffffff);
+        }
+        .task-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(117,230,230,0.1), rgba(19,21,180,0.1));
+            border-radius: 15px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .task-card:hover::before {
+            opacity: 1;
+        }
+        .task-card a {
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #1315b4;
-            transition: color 0.3s;
+            font-weight: 600;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            transition: all 0.3s;
         }
-        .task-list a:hover {
+        .task-card:hover a {
             color: #007BFF;
+            transform: scale(1.05);
+        }
+        .task-number {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 0.9rem;
+            color: #75e6e6;
             font-weight: bold;
         }
     </style>
@@ -56,23 +123,50 @@
     <h1>TASK LIST</h1>
 
     <div class="user-info">
-        <p>Name: Vikash Kumar</p>
-        <p>Registration Number: 22BCY10030</p>
-        <p>Email: vikashkumar2022@vitbhopal.ac.in</p>
+        <p>Name: Harihar Bajpai</p>
+        <p>Registration Number: 22BCE10437</p>
+        <p>Email: Hariharbajpai2022@vitbhopal.ac.in</p>
     </div>
 
-    <h2>JAVASCRIPT</h2>
-    <ul class="task-list">
-        <li><a href="./index20.html">Task 1</a></li>
-        <li><a href="./index21.html">Task 2</a></li>
-        <li><a href="./index22.html">Task 3</a></li>
-        <li><a href="./index23.html">Task 4</a></li>
-        <li><a href="./index24.html">Task 5</a></li>
-        <li><a href="./index25.html">Task 6</a></li>
-        <li><a href="./index26.html">Task 7</a></li>
-        <li><a href="./index27.html">Task 8</a></li>
-        <li><a href="./index28.html">Task 9</a></li>
-    </ul>
+    <h2>JAVASCRIPT TASKS</h2>
+    <div class="task-container">
+        <div class="task-card">
+            <span class="task-number">Task 1</span>
+            <a href="./index20.html">Task 1</a>
+        </div>
+        <div class="task-card">
+            <span class="task-number">Task 2</span>
+            <a href="./index21.html">Task 2</a>
+        </div>
+        <div class="task-card">
+            <span class="task-number">Task 3</span>
+            <a href="./index22.html">Task 3</a>
+        </div>
+        <div class="task-card">
+            <span class="task-number">Task 4</span>
+            <a href="./index23.html">Task 4</a>
+        </div>
+        <div class="task-card">
+            <span class="task-number">Task 5</span>
+            <a href="./index24.html">Task 5</a>
+        </div>
+        <div class="task-card">
+            <span class="task-number">Task 6</span>
+            <a href="./index25.html">Task 6</a>
+        </div>
+        <div class="task-card">
+            <span class="task-number">Task 7</span>
+            <a href="./index26.html">Task 7</a>
+        </div>
+        <div class="task-card">
+            <span class="task-number">Task 8</span>
+            <a href="./index27.html">Task 8</a>
+        </div>
+        <div class="task-card">
+            <span class="task-number">Task 9</span>
+            <a href="./index28.html">Task 9</a>
+        </div>
+    </div>
 
 </body>
 </html>
